@@ -1,0 +1,20 @@
+@charset "utf-8";
+/*노말라이즈*/
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	text-decoration: none;
+	list-style: none;
+	color: inherit;
+}
+/*라이브러리*/
+.fp-watermark{
+  display: none;
+}
+
+.section{
+  border:3px solid red;
+  height: 100vh;
+  width: 100%;
+}
