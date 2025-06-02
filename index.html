@@ -10,16 +10,33 @@
 </head>
 <body>
   <!--배경 구현-->
+  <div class="custom-cursor"></div>
   <div class="background">
-    <img src="/img/background.jpg" alt="배경이미지">
+    <img src="/img/background.png" alt="배경이미지">
   </div>
+  <div class="loader">
+  <img src="/img/hello.png" alt="Hello, wellcom to AIVance" />
+</div>
   <!--탑바 구현 시작-->
-  <header></header>
+  <header>
+    <div class="top-bar">
+      <div class="top-bar-logo-box">
+        <a href="#" class="logo"><img src="/img/logo-white.png" alt="AIVance logo"></a>
+      </div>
+      <div class="top-bar-menu-box">
+        <div class="top-bar-menu"></div>
+      </div>
+    </div>
+  </header>
   <!--메인페이지 구현 시작-->
   <main>
     <div id="fullpage">
-      <div class="section">섹션1</div>
-      <div class="section">섹션2</div>
+      <div class="section section-1">
+        <video src="/img/main-video.mp4" muted autoplay loop  class="video"></video>
+        <div class="video-title">AI that leads transformation and accelerates your growth.</div>
+        <div class="video-title">변화를 이끄는 AI, 성장을 가속합니다</div>
+      </div>
+      <div class="section section-2">섹션2</div>
     </div>
   </main>
   <!--푸터 구현 시작-->
