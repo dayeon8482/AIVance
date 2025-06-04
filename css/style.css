@@ -19,6 +19,7 @@
 body {
   font-family: 'Pretendard', sans-serif;
   font-weight: 700;
+  background-color: #000;
 }
 * {
 padding: 0;
@@ -63,7 +64,7 @@ height: 100vh;
 }
 .section{
 width:100%;
-height: 100vh;
+border:1px solid red;
 }
 .loader{
 position: fixed;
@@ -85,7 +86,7 @@ bottom:20px;
 /*메뉴 구현*/
 .menu-wrap{
   position: fixed;
-  z-index: 1;
+  z-index: 10;
   background-color: #f5f5f5;
   height: 100vh;
   width:0;
@@ -307,3 +308,192 @@ position: absolute;
     border-color: #fff;
   }
 }
+/*메인페이지 2*/
+.section-2{
+
+}
+.solution-wrap{
+  height:100%;
+  width:100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+ 
+}
+.solution-title-wrap{
+  height: 300px;
+  width:100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.solution-title {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  width:100%;
+  align-items: center;
+  top:-10%;
+   margin-top:100px;
+   transition: all .8s;
+   opacity: 0;
+}
+.solution-title.active{
+  top:30%;
+  opacity: 1;
+}
+.solution-title > p{
+  font-size: 2.5rem;;
+color:#fff;
+padding: 0 10px;
+}
+
+.solution-box {
+      height: 400vh;
+      position: relative;
+    }
+
+    .card {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-inner {
+      width: 1100px;
+      height: 500px;
+      background-color: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      border: 1px solid #545454;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: bold;
+      opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  position: relative;
+    }
+    .card.visible .card-inner {
+  opacity: 1;
+  transform: scale(1);
+}
+
+    .card:nth-child(1) {
+      z-index: 1;
+    }
+
+    .card:nth-child(2) {
+      z-index: 2;
+    }
+
+    .card:nth-child(3) {
+      z-index: 3;
+    }
+    .card-inner > img{
+      height:100%;
+      width: 100%;
+
+    }
+    .card:nth-child(1)>.card-inner::before{
+      content:"An hour’s work, done in just 3 minutes.";
+      font-size: 2.7rem;
+      width:800px;
+      color:#fff;
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-shadow: 3px 3px 3px rgba(0,0,0,0.7);
+    }
+        .card:nth-child(1)>.card-inner::after{
+      content:"AIVance는 반복적인 문서 작업을 AI가 대신합니다. \A PDF에서 필요한 정보를 추출하고, 엑셀로 자동 정리해주며, 리포트는 미리 설정된 템플릿에 맞춰 완성됩니다.";
+      white-space:pre;
+      font-size: 1.2rem;
+      width:800px;
+      color:#fff;
+      line-height: 30px;
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      top:80%;
+    }
+ 
+    .card:nth-child(2)>.card-inner::before{
+      content:"Delight customers. Empower teams.";
+      font-size: 2.7rem;
+      width:800px;
+      color:#fff;
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.7);
+    }
+        .card:nth-child(2)>.card-inner::after{
+      content:"AIVance는 고객 요청, 이메일, 채팅 데이터를 실시간으로 분류하고 우선순위를 자동 지정합니다. \A 단순 반복 응답은 챗봇과 연동되고, 담당자에게 필요한 건 자동으로 할당됩니다.";
+      white-space:pre;
+      font-size: 1.2rem;
+      width:800px;
+      color:#fff;
+      line-height: 30px;
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      top:80%;
+    }
+       .card:nth-child(2)>.card-inner::before, .card:nth-child(2)>.card-inner::after{
+      opacity: 0;
+      transition: opacity .7s;
+    }
+    .card:nth-child(2)>.card-inner.active::before, .card:nth-child(2)>.card-inner.active::after{
+      opacity: 1;
+    }
+    .card:nth-child(3)>.card-inner::before{
+      content:"Save time. Report accurately.";
+      font-size: 2.7rem;
+      width:800px;
+      color:#fff;
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-shadow: 3px 3px 3px rgba(0,0,0,0.7);
+    }
+        .card:nth-child(3)>.card-inner::after{
+      content:"AIVance는 다양한 사내 시스템과 연동되어 데이터를 자동 수집하고, 시각화된 리포트를 생성합니다. \A매일 아침 대시보드에 자동으로 최신 데이터가 반영됩니다.";
+      white-space:pre;
+      font-size: 1.2rem;
+      width:800px;
+      color:#fff;
+      line-height: 30px;
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+       .card:nth-child(3)>.card-inner::before, .card:nth-child(3)>.card-inner::after{
+      top:100%;
+      transition: top .5s;
+    }
+    .card:nth-child(3)>.card-inner.active::before{
+      top:50%;
+      transform: translateY(-50%);
+    }
+    .card:nth-child(3)>.card-inner.active::after{
+      top:80%;
+    }
+    .section-3{
+      height: 100vh;
+    }
