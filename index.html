@@ -5,8 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AIVance</title>
 
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/fullpage.min.css" /> -->
+<script src="/script/jquery-1.12.3.js"></script>
+<script src="/script/script.js"></script>
 <link rel="stylesheet" href="/css/style.css">
+
 </head>
 <body>
 <!--배경 구현-->
@@ -15,7 +17,7 @@
   <img src="/img/background.png" alt="배경이미지">
 </div> -->
 <div class="loader">
-<img src="/img/hello.png" alt="Hello, wellcom to AIVance" />
+<img src="/img/welcome.png" alt="Hello, welcom to AIVance" />
 </div>
 <!--메뉴 구현-->
 <div class="menu-wrap">
@@ -74,9 +76,8 @@
 </header>
 <!--메인페이지 구현 시작-->
 <main>
-  <!-- <div id="fullpage"> -->
     <div class="section section-1">
-      <video src="/img/main-video.mp4" muted autoplay loop  class="video"></video>
+      <video src="/img/main-video.mp4" muted autoplay loop class="video"></video>
       <div class="video-background"></div>
       <div class="video-title">AI that drives change <br> and accelerates growth.</div>
       <div class="video-sub-title typing">변화를 이끄는 AI, 성장을 가속합니다.</div>
@@ -101,14 +102,70 @@
         </div>
       </div>
     </div>
-      <div class="section section-3">섹션3</div>
+      <div class="section section-3">
+        <section class="impact-section">
+	<div class="graph-svg-bg">
+    <svg viewBox="0 0 500 200" preserveAspectRatio="none">
+      <polyline class="line1" points="0,150 100,120 200,130 300,80 400,90 470,40" />
+      <polyline class="line2" points="0,160 100,140 200,120 300,100 400,70 470,60" />
+      <polyline class="line3" points="0,170 100,160 200,140 300,120 400,100 470,90" />
+    </svg>
+
+  </div>
+  <h2 class="section-title">AI 도입으로 달라지는 비즈니스의 모습</h2>
+  <p class="section-subtitle">도입 전과 후, 실제 변화는 숫자가 말해줍니다.<br>AIVance 솔루션이 만들어낸 기대 효과를 확인해보세요.</p>
+
+  <div class="impact-grid">
+    <div class="impact-card">
+      <h3>업무 효율</h3>
+      <div class="compare">
+        <div class="before">
+          <p>Before</p>
+          <p>수작업 반복</p>
+          <p>평균 처리 시간 2시간</p>
+        </div>
+        <div class="after">
+          <p>After</p>
+          <p>자동화 처리</p>
+          <p>평균 처리 시간 15분</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="impact-card">
+      <h3>정확도</h3>
+      <div class="compare">
+        <div class="before">
+          <p>Before</p>
+          <p>사람 오류율 12%</p>
+        </div>
+        <div class="after">
+          <p>After</p>
+          <p>AI 분석 오류율 1% 이하</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="impact-card">
+      <h3>비용 절감</h3>
+      <div class="compare">
+        <div class="before">
+          <p>Before</p>
+          <p>외주 인건비 연 2천만 원</p>
+        </div>
+        <div class="after">
+          <p>After</p>
+          <p>AI 유지비 연 300만 원</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+      </div>
       <div class="section section-4">섹션4</div>
-  <!-- </div> -->
 </main>
 <!--푸터 구현 시작-->
 <footer></footer>
 </body>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/fullpage.min.js"></script> -->
-<script src="/script/jquery-1.12.3.js"></script>
-<script src="/script/script.js"></script>
+
 </html>

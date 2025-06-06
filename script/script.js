@@ -1,9 +1,4 @@
 console.clear();
-//풀페이지
-// new fullpage("#fullpage", {
-//   autoScrolling: false,
-//   scrollOverflow: false,
-// });
 //커서 포인터
 document.addEventListener("mousemove", (e) => {
   const cursor = document.querySelector(".custom-cursor");
@@ -38,7 +33,7 @@ function subMenu_init() {
 subMenu_init();
 /*솔루션 타이틀 스크롤 이벤트*/
 $(window).on("scroll", function () {
-  if ($(window).scrollTop() >= 430) {
+  if ($(window).scrollTop() >= 400) {
     $(".solution-title").addClass("active");
   } else {
     $(".solution-title").removeClass("active");
@@ -46,8 +41,20 @@ $(window).on("scroll", function () {
 });
 /* 솔루션 카드  애니메이션*/
 const cards = document.querySelectorAll(".card");
+document.addEventListener("scroll", function () {
+  const cards = document.querySelectorAll(".card");
+  cards.forEach((card) => {
+    const rect = card.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      card.classList.add("visible");
+    } else {
+      card.classList.remove("visible");
+    }
+  });
+});
 
-const observer = new IntersectionObserver(
+// 각 카드에 옵저버 적용
+const cardObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -58,12 +65,11 @@ const observer = new IntersectionObserver(
     });
   },
   {
-    threshold: 0.1,
+    threshold: 0.2,
   }
 );
 
-// 각 카드에 옵저버 적용
-cards.forEach((card) => observer.observe(card));
+cards.forEach((card) => cardObserver.observe(card));
 
 /*솔루션 카드 스크롤 이벤트*/
 $(window).on("scroll", function () {
@@ -79,4 +85,30 @@ $(window).on("scroll", function () {
   } else {
     $(".card:nth-child(3)>.card-inner").removeClass("active");
   }
+});
+/*그래프 애니메이션 효과 */
+document.addEventListener("DOMContentLoaded", () => {
+  const section = document.querySelector(".impact-section");
+
+  if (!section) {
+    console.warn(".impact-section 요소를 찾을 수 없습니다.");
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          section.classList.add("graph-animate");
+        } else {
+          section.classList.remove("graph-animate");
+        }
+      });
+    },
+    {
+      threshold: 0.5,
+    }
+  );
+
+  observer.observe(section);
 });
