@@ -20,6 +20,11 @@ body {
 font-family: 'Pretendard', sans-serif;
 font-weight: 700;
 background-color: #000;
+ -ms-overflow-style: none;
+ }
+ 
+::-webkit-scrollbar {
+  display: none;
 }
 * {
 padding: 0;
@@ -43,15 +48,15 @@ background-color: green;
 background-color: gold;
 }
 .custom-cursor {
-  width: 20px;
-  height: 20px;
-	background-color: rgba(100, 121, 246,0.8);
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  transition: transform 0.1s ease;
-  z-index: 9999;
+width: 20px;
+height: 20px;
+background-color: rgba(100, 121, 246,0.8);
+border-radius: 50%;
+position: fixed;
+pointer-events: none;
+transform: translate(-50%, -50%);
+transition: transform 0.1s ease;
+z-index: 9999;
 }
 /*.background{
 position: fixed;
@@ -91,7 +96,7 @@ display: flex;
 overflow: hidden;
 transition: all .5s;
 &.active{
-    width:300px;
+  width:300px;
 }
 }
 .menu-box{
@@ -187,7 +192,7 @@ height: 40px;
 width: 38px;
 cursor: pointer;
 position: relative;
-z-index: 10;
+z-index: 100;
 
 }
 .top-bar-menu-btn::before{
@@ -277,7 +282,7 @@ overflow: hidden;
 white-space: nowrap;
 border-right: 2px solid #fff;
 animation: typing 7s steps(25, end) forwards,
-            blink-caret 0.75s step-end infinite;
+          blink-caret 0.75s step-end infinite;
 animation-iteration-count: infinite;
 animation-delay: 0s, 10s; /* 첫 애니메이션 끝난 후 깜빡임 시작 */
 animation-direction: normal;
@@ -286,22 +291,22 @@ animation-fill-mode: forwards;
 
 @keyframes typing {
 0% {
-  width: 0;
+width: 0;
 }
 40% {
-  width: 25ch; /* 타이핑 글자 수 만큼 */
+width: 25ch; /* 타이핑 글자 수 만큼 */
 }
 100% {
-  width: 25ch; /* 멈춤 상태 유지 */
+width: 25ch; /* 멈춤 상태 유지 */
 }
 }
 
 @keyframes blink-caret {
 50% {
-  border-color: transparent;
+border-color: transparent;
 }
 100% {
-  border-color: #fff;
+border-color: #fff;
 }
 }
 /*메인페이지 2*/
@@ -330,9 +335,9 @@ justify-content: center;
 width:100%;
 align-items: center;
 top:-10%;
-  margin-top:100px;
-  transition: all .8s;
-  opacity: 0;
+margin-top:100px;
+transition: all .8s;
+opacity: 0;
 }
 .solution-title.active{
 top:30%;
@@ -345,248 +350,392 @@ padding: 0 10px;
 }
 
 .solution-box {
-    height: 400vh;
-    position: relative;
-  }
+  height: 400vh;
+  position: relative;
+}
 
-  .card {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+.card {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  .card-inner {
-    width: 1100px;
-    height: 500px;
-    background-color: white;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    border: 1px solid #545454;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    font-weight: bold;
-    opacity: 0;
+.card-inner {
+  width: 1100px;
+  height: 500px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border: 1px solid #545454;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: bold;
+  opacity: 0;
 transform: scale(0.95);
 transition: opacity 0.6s ease, transform 0.6s ease;
 position: relative;
-  }
-  .card.visible .card-inner {
+}
+.card.visible .card-inner {
 opacity: 1;
 transform: scale(1);
 }
 
 
-  .card:nth-child(1) {
-    z-index: 1;
-  }
+.card:nth-child(1) {
+  z-index: 1;
+}
 
-  .card:nth-child(2) {
-    z-index: 2;
-  }
+.card:nth-child(2) {
+  z-index: 2;
+}
 
-  .card:nth-child(3) {
-    z-index: 3;
-  }
-  .card-inner > img{
-    height:100%;
-    width: 100%;
+.card:nth-child(3) {
+  z-index: 3;
+}
+.card-inner > img{
+  height:100%;
+  width: 100%;
 
-  }
-  .card:nth-child(1)>.card-inner::before{
-    content:"An hour’s work, done in just 3 minutes.";
-    font-size: 2.7rem;
-    width:800px;
-    color:#fff;
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-shadow: 3px 3px 3px rgba(0,0,0,0.7);
-  }
-      .card:nth-child(1)>.card-inner::after{
-    content:"AIVance는 반복적인 문서 작업을 AI가 대신합니다. \A PDF에서 필요한 정보를 추출하고, 엑셀로 자동 정리해주며, 리포트는 미리 설정된 템플릿에 맞춰 완성됩니다.";
-    white-space:pre;
-    font-size: 1.2rem;
-    width:800px;
-    color:#fff;
-    line-height: 30px;
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top:80%;
-  }
+}
+.card:nth-child(1)>.card-inner::before{
+  content:"An hour’s work, done in just 3 minutes.";
+  font-size: 2.7rem;
+  width:800px;
+  color:#fff;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 3px 3px 3px rgba(0,0,0,0.7);
+}
+    .card:nth-child(1)>.card-inner::after{
+  content:"AIVance는 반복적인 문서 작업을 AI가 대신합니다. \A PDF에서 필요한 정보를 추출하고, 엑셀로 자동 정리해주며, 리포트는 미리 설정된 템플릿에 맞춰 완성됩니다.";
+  white-space:pre;
+  font-size: 1.2rem;
+  width:800px;
+  color:#fff;
+  line-height: 30px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top:80%;
+}
 
-  .card:nth-child(2)>.card-inner::before{
-    content:"Delight customers. Empower teams.";
-    font-size: 2.7rem;
-    width:800px;
-    color:#fff;
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.7);
-  }
-      .card:nth-child(2)>.card-inner::after{
-    content:"AIVance는 고객 요청, 이메일, 채팅 데이터를 실시간으로 분류하고 우선순위를 자동 지정합니다. \A 단순 반복 응답은 챗봇과 연동되고, 담당자에게 필요한 건 자동으로 할당됩니다.";
-    white-space:pre;
-    font-size: 1.2rem;
-    width:800px;
-    color:#fff;
-    line-height: 30px;
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top:80%;
-  }
-      .card:nth-child(2)>.card-inner::before, .card:nth-child(2)>.card-inner::after{
+.card:nth-child(2)>.card-inner::before{
+  content:"Delight customers. Empower teams.";
+  font-size: 2.7rem;
+  width:800px;
+  color:#fff;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.7);
+}
+    .card:nth-child(2)>.card-inner::after{
+  content:"AIVance는 고객 요청, 이메일, 채팅 데이터를 실시간으로 분류하고 우선순위를 자동 지정합니다. \A 단순 반복 응답은 챗봇과 연동되고, 담당자에게 필요한 건 자동으로 할당됩니다.";
+  white-space:pre;
+  font-size: 1.2rem;
+  width:800px;
+  color:#fff;
+  line-height: 30px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top:80%;
+}
+    .card:nth-child(2)>.card-inner::before, .card:nth-child(2)>.card-inner::after{
+  opacity: 0;
+  transition: opacity .7s;
+}
+.card:nth-child(2)>.card-inner.active::before, .card:nth-child(2)>.card-inner.active::after{
+  opacity: 1;
+}
+.card:nth-child(3)>.card-inner::before{
+  content:"Save time. Report accurately.";
+  font-size: 2.7rem;
+  width:800px;
+  color:#fff;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 3px 3px 3px rgba(0,0,0,0.7);
+}
+    .card:nth-child(3)>.card-inner::after{
+  content:"AIVance는 다양한 사내 시스템과 연동되어 데이터를 자동 수집하고, 시각화된 리포트를 생성합니다. \A매일 아침 대시보드에 자동으로 최신 데이터가 반영됩니다.";
+  white-space:pre;
+  font-size: 1.2rem;
+  width:800px;
+  color:#fff;
+  line-height: 30px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top:80%;
+}
+    .card:nth-child(3)>.card-inner::before, .card:nth-child(3)>.card-inner::after{
     opacity: 0;
-    transition: opacity .7s;
-  }
-  .card:nth-child(2)>.card-inner.active::before, .card:nth-child(2)>.card-inner.active::after{
+  transition: opacity .7s;
+}
+.card:nth-child(3)>.card-inner.active::before,.card:nth-child(3)>.card-inner.active::after{
     opacity: 1;
-  }
-  .card:nth-child(3)>.card-inner::before{
-    content:"Save time. Report accurately.";
-    font-size: 2.7rem;
-    width:800px;
-    color:#fff;
+}
+
+.section-3{
+  height: 100vh;
+}
+/*메인 3*/
+.impact-section {
+  position: relative;
+  overflow: hidden;
+  padding: 100px 20px;
+  text-align: center;
+  z-index: 1;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color:#fff;
+}
+
+.section-subtitle {
+  font-size: 1.3rem;
+  color: #fff;
+  margin-bottom: 60px;
+  font-weight: 300;
+}
+.compare{
+  color:#fff;
+  font-weight: 400;
+}
+.before > p:first-child, .after > p:first-child{
+  font-weight: 700;
+}
+.before {
+  padding-bottom: 10px;
+}
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+  z-index: 1;
+  position: relative;
+}
+
+.impact-card {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid #333;
+  transition: transform 0.3s;
+  cursor: default;
+}
+
+.impact-card:hover {
+  transform: translateY(-5px);
+}
+
+.impact-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  color: #88aaff;
+}
+
+.impact-card p {
+  font-size: 0.95rem;
+  color: #dddddd;
+}
+
+/* 배경 그래프 */
+  .graph-svg-bg {
     position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-shadow: 3px 3px 3px rgba(0,0,0,0.7);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.3;
+    pointer-events: none;
   }
-      .card:nth-child(3)>.card-inner::after{
-    content:"AIVance는 다양한 사내 시스템과 연동되어 데이터를 자동 수집하고, 시각화된 리포트를 생성합니다. \A매일 아침 대시보드에 자동으로 최신 데이터가 반영됩니다.";
-    white-space:pre;
-    font-size: 1.2rem;
-    width:800px;
-    color:#fff;
-    line-height: 30px;
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+  .graph-svg-bg svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
   }
-      .card:nth-child(3)>.card-inner::before, .card:nth-child(3)>.card-inner::after{
-    top:100%;
-    transition: top .5s;
+
+  .graph-svg-bg polyline {
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-dasharray: 500;
+    stroke-dashoffset: 500;
+    transition: stroke-dashoffset 2s ease-out;
   }
-  .card:nth-child(3)>.card-inner.active::before{
-    top:50%;
-    transform: translateY(-50%);
+
+  .line1 { stroke: #6479f6; }
+  .line2 { stroke: #8a9bf9; }
+  .line3 { stroke: #c0c9ff; }
+
+  .graph-animate .graph-svg-bg polyline {
+    stroke-dashoffset: 0;
   }
-  .card:nth-child(3)>.card-inner.active::after{
-    top:80%;
-  }
-  .section-3{
+  /*섹션 4 history*/
+  .section-4{
     height: 100vh;
   }
-  /*메인 3*/
-  .impact-section {
-    position: relative;
-    overflow: hidden;
-    padding: 100px 20px;
-    text-align: center;
-    z-index: 1;
-  }
+  .timeline-section {
+height: 100vh;
+background: #000;
+color: white;
+position: relative;
+}
 
-  .section-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 20px;
-    color:#fff;
-  }
 
-  .section-subtitle {
-    font-size: 1.3rem;
-    color: #fff;
-    margin-bottom: 60px;
-    font-weight: 300;
+.swiper {
+width: 100%;
+height: 100%;
+}
+
+.swiper-slide {
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+font-size: 20px;
+position: relative;
+cursor: default;
+}
+.swiper-slide::before {
+content: "";
+width: 100%;
+height: 1px;
+background-color: #999;
+position: absolute;
+top: 40%;
+}
+
+.year {
+min-width: 1200px;
+display: flex;
+height: 80px;
+justify-content: space-around;
+align-items: center;
+margin: 50px 0 50px 0;
+}
+
+.year > span {
+font-size: 2.5rem;
+font-weight: bold;
+margin-bottom: 10px;
+position: relative;
+}
+
+.history-wrap {
+display: flex;
+min-width: 1200px;
+height: 250px;
+align-items: center;
+justify-content: space-around;
+}
+.history {
+padding-top: 50px;
+width: 550px;
+height: 250px;
+position: relative;
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+.history > li {
+font-size: 1.5rem;
+color: #999999;
+line-height: 30px;
+}
+.swiper-slide-4> .year, .swiper-slide-4 > .history-wrap{
+margin-left: -500px;
+}
+.swiper-slide-4::before {
+width: 30%;
+left:0;
+transition: width 2s ease-out;
+}
+.swiper-slide-4.active::before{
+width:100%;
+}
+/*푸터*/
+ .footer {
+  width: 100%;
+  height: 180px;
+    padding: 40px 20px;
   }
-  .compare{
-    color:#fff;
-    font-weight: 400;
-  }
-  .before > p:first-child, .after > p:first-child{
-    font-weight: 700;
-  }
-  .before {
-    padding-bottom: 10px;
-  }
-  .impact-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    max-width: 1000px;
+  .footer-container {
+    min-width: 1200px;
+    height: 100%;
     margin: 0 auto;
-    z-index: 1;
-    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
   }
-
-  .impact-card {
-    background-color: rgba(255, 255, 255, 0.05);
-    padding: 30px;
-    border-radius: 12px;
-    border: 1px solid #333;
-    transition: transform 0.3s;
-    cursor: default;
+  .footer-logo {
+    height: 80px;
+    width:150px;
+    overflow: hidden;
   }
-
-  .impact-card:hover {
-    transform: translateY(-5px);
+  .footer-logo > img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
-
-  .impact-card h3 {
-    font-size: 1.3rem;
+  .footer-nav {
+    display: flex;
+    gap: 24px;
     margin-bottom: 10px;
-    color: #88aaff;
   }
-
-  .impact-card p {
-    font-size: 0.95rem;
-    color: #dddddd;
+  .footer-nav a {
+    color: #bbb;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s;
   }
-
-  /* 배경 그래프 */
-   .graph-svg-bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      opacity: 0.3;
-      pointer-events: none;
+  .footer-nav a:hover {
+    color: #6479f6;
+  }
+  .footer-info {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #666;
+    display: flex;
+    padding:0 50px;
+  }
+    .footer-info>p{
+      padding: 0 15px;
     }
-
-    .graph-svg-bg svg {
-      width: 100%;
-      height: 100%;
-      fill: none;
+  @media (max-width: 600px) {
+    .footer-container {
+      flex-direction: column;
+      text-align: center;
     }
-
-    .graph-svg-bg polyline {
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-dasharray: 500;
-      stroke-dashoffset: 500;
-      transition: stroke-dashoffset 2s ease-out;
+    .footer-nav {
+      justify-content: center;
+      margin-bottom: 20px;
     }
-
-    .line1 { stroke: #6479f6; }
-    .line2 { stroke: #8a9bf9; }
-    .line3 { stroke: #c0c9ff; }
-
-    .graph-animate .graph-svg-bg polyline {
-      stroke-dashoffset: 0;
+    .footer-info {
+      max-width: 100%;
     }
+  }

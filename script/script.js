@@ -5,9 +5,11 @@ document.addEventListener("mousemove", (e) => {
   cursor.style.left = e.clientX + "px";
   cursor.style.top = e.clientY + "px";
 });
+
 //메뉴
 function menuBtn_init() {
   $(".top-bar-menu-btn").click(function () {
+    console.log("작동");
     $(".menu-wrap").toggleClass("active");
     $(this).toggleClass("active");
 
@@ -112,3 +114,77 @@ document.addEventListener("DOMContentLoaded", () => {
 
   observer.observe(section);
 });
+
+//history 스와이퍼
+window.addEventListener("DOMContentLoaded", () => {
+  const swiper = new Swiper(".swiper", {
+    direction: "horizontal",
+    speed: 1500,
+    spaceBetween: 0,
+    mousewheel: true, // swiper 내장 마우스휠 기능 끄기
+  });
+
+  const swiperSection = document.querySelector(".swiper-wapper");
+
+  let scrollTimeout;
+
+  window.addEventListener(
+    "wheel",
+    (e) => {
+      const rect = swiperSection.getBoundingClientRect();
+      const inSwiperSection =
+        rect.top <= window.innerHeight && rect.bottom >= 0;
+
+      if (!inSwiperSection) {
+        // 가로 스크롤 구간 아니면 그냥 세로 스크롤
+        return;
+      }
+
+      // 가로 스크롤 구간 내부
+
+      const isFirstSlide = swiper.isBeginning;
+      const isLastSlide = swiper.isEnd;
+
+      // 휠 방향 판단
+      const wheelDown = e.deltaY > 0;
+      const wheelUp = e.deltaY < 0;
+
+      // 첫 슬라이드 + 위로 스크롤이면 세로 스크롤 허용 (휠 이벤트 막지 않음)
+      if (isFirstSlide && wheelUp) {
+        return; // 세로 스크롤 유지
+      }
+
+      // 마지막 슬라이드 + 아래로 스크롤이면 세로 스크롤 허용
+      if (isLastSlide && wheelDown) {
+        return; // 세로 스크롤 유지
+      }
+
+      // 그 외 상황: 가로 슬라이드 전환 처리
+      e.preventDefault();
+
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        if (wheelDown) {
+          swiper.slideNext();
+        } else if (wheelUp) {
+          swiper.slidePrev();
+        }
+      }, 50);
+    },
+    { passive: false }
+  );
+});
+//history 슬라이드 4 효과
+const target = document.querySelector(".swiper-slide-4");
+
+const slide4 = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("active");
+    } else {
+      entry.target.classList.remove("active");
+    }
+  });
+});
+
+slide4.observe(target);
