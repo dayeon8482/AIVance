@@ -56,24 +56,27 @@ function throttle(func, limit) {
 // 공통 스크롤 핸들러 (throttle 적용)
 const onScroll = throttle(() => {
   const scrollTop = window.scrollY || window.pageYOffset;
-
+  const isMobile = window.innerWidth <= 768;
   // solution-title 활성화
   const solutionTitle = document.querySelector(".solution-title");
   if (solutionTitle) {
-    if (scrollTop >= 400) solutionTitle.classList.add("active");
+    const titleTrigger = isMobile ? 450 : 400;
+    if (scrollTop >= titleTrigger) solutionTitle.classList.add("active");
     else solutionTitle.classList.remove("active");
   }
 
   // 솔루션 카드 .card-inner 활성화 (2번, 3번 카드)
   const card2Inner = document.querySelector(".card:nth-child(2) > .card-inner");
   if (card2Inner) {
-    if (scrollTop >= 1450) card2Inner.classList.add("active");
+    const card2Trigger = isMobile ? 1700 : 1350;
+    if (scrollTop >= card2Trigger) card2Inner.classList.add("active");
     else card2Inner.classList.remove("active");
   }
 
   const card3Inner = document.querySelector(".card:nth-child(3) > .card-inner");
   if (card3Inner) {
-    if (scrollTop >= 2100) card3Inner.classList.add("active");
+    const card3Trigger = isMobile ? 2500 : 2000;
+    if (scrollTop >= card3Trigger) card3Inner.classList.add("active");
     else card3Inner.classList.remove("active");
   }
 }, 100);

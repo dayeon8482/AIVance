@@ -59,19 +59,17 @@ transform: translate(-50%, -50%);
 transition: transform 0.1s ease;
 z-index: 9999;
 }
-/*.background{
-position: fixed;
-z-index: -10;
-width: 100%;
-height: 100vh;
-}*/
+@media (768px > width){
+  .custom-cursor{
+    display: none;
+  }
+}
 .section{
 width:100%;
 margin: 0 auto;
 }
 .main-wrap{
   width:100%;
-  border:1px solid red;
  margin: 0 auto; 
 }
 .loader{
@@ -327,6 +325,15 @@ border-color: #fff;
   margin-top: -10px;
 }
 }
+@media (768px > width > 480px) {
+.section-1 > .video-title{
+  font-size: 2rem;
+}
+.section-1 > .video-sub-title{
+  font-size: 1.2rem;
+  margin-top: -30px;
+}
+}
 /*메인페이지 2*/
 .solution-wrap{
 height:100%;
@@ -335,7 +342,6 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-
 }
 .solution-title-wrap{
 height: 300px;
@@ -366,12 +372,10 @@ font-size: 2.5rem;;
 color:#fff;
 padding: 0 10px;
 }
-
 .solution-box {
   height: 400vh;
   position: relative;
 }
-
 .card {
   position: sticky;
   top: 0;
@@ -403,23 +407,18 @@ position: relative;
 opacity: 1;
 transform: scale(1);
 }
-
-
 .card:nth-child(1) {
   z-index: 1;
 }
-
 .card:nth-child(2) {
   z-index: 2;
 }
-
 .card:nth-child(3) {
   z-index: 3;
 }
 .card-inner > img{
   height:100%;
   width: 100%;
-
 }
 .card:nth-child(1)>.card-inner::before{
   content:"An hour’s work, done in just 3 minutes.";
@@ -445,7 +444,6 @@ transform: scale(1);
   align-items: center;
   top:80%;
 }
-
 .card:nth-child(2)>.card-inner::before{
   content:"Delight customers. Empower teams.";
   font-size: 2.7rem;
@@ -526,6 +524,25 @@ font-size: 2.2rem;
 }
 .card:nth-child(n+1)>.card-inner::after{
 font-size: 1rem;
+}
+}
+@media (768px > width > 480px) {
+.solution-title > p{
+  font-size: 1.3rem;
+}
+.solution-title > img{
+  width:150px;
+  height: 50px;
+  object-fit: contain;
+}
+.card-inner{
+  width:450px;
+}
+.card:nth-child(n+1)>.card-inner::before{
+font-size: 1.3rem;
+}
+.card:nth-child(n+1)>.card-inner::after{
+font-size: 0.6rem;
 }
 }
 
@@ -644,6 +661,28 @@ font-size: 1rem;
   gap: 20px;
 }
   }
+    @media (768px > width > 480px) {
+    .section-title{
+      font-size: 1.5rem;
+    }
+    .section-subtitle{
+      font-size: 1.1rem;
+    }
+    .impact-grid {
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+}
+.impact-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  color: #88aaff;
+}
+
+.impact-card p {
+  font-size: 0.7rem;
+  color: #dddddd;
+}
+  }
   /*섹션 4 history*/
   .section-4{
     height: 100vh;
@@ -760,14 +799,18 @@ z-index: 20;
   right:3%;
 }
  @media (1200px > width > 767px) {
+  .section-3{
+    height: 110vh;
+  }
+  .swiper-slide::before {
+top: 43%;
+}
 .year {
 min-width: 700px;
 }
-
 .year > span {
 font-size: 2rem;
 }
-
 .history-wrap {
 min-width: 700px;
 }
@@ -788,11 +831,43 @@ font-size: 1rem;
 margin-left: -250px;
 }
  }
+ @media (768px > width > 480px) {
+  .section-3{
+    height: 100vh;
+  }
+  .swiper-slide::before {
+top: 44%;
+}
+.year {
+min-width: 450px;
+}
+.year > span {
+font-size: 1.7rem;
+}
+.history-wrap {
+min-width: 450px;
+}
+.history {
+width: 220px;
+height: 250px;
+}
+
+.history > li {
+  width:220px;
+font-size: 0.65rem;
+}
+.RPA{
+  font-size: 0.5rem;
+}
+.swiper-slide-4> .year, .swiper-slide-4 > .history-wrap{
+  min-width:220px;
+margin-left: -150px;
+}
+ }
 /*푸터*/
  .footer {
   width: 100%;
   height: 120px;
-    padding: 20px 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
   }
   .footer-container {
@@ -831,5 +906,20 @@ margin-left: -250px;
   .footer-info {
     font-size: 0.7rem;
     flex-direction: column;
+  }
+  }
+   @media (768px > width > 480px) {
+  .footer-container {
+    min-width: 450px;
+  }
+  .footer-info {
+    font-size: 0.5rem;
+    flex-direction: column;
+    padding:0px;
+  }
+   .footer-logo {
+    height: 60px;
+    width:130px;
+    overflow: hidden;
   }
   }
