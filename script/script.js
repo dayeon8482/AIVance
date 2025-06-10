@@ -1,12 +1,15 @@
 console.clear();
-//커서 포인터
+
+// 커서 포인터
 document.addEventListener("mousemove", (e) => {
   const cursor = document.querySelector(".custom-cursor");
-  cursor.style.left = e.clientX + "px";
-  cursor.style.top = e.clientY + "px";
+  if (cursor) {
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
+  }
 });
 
-//메뉴
+// 메뉴 버튼 초기화
 function menuBtn_init() {
   $(".top-bar-menu-btn").click(function () {
     console.log("작동");
@@ -14,48 +17,71 @@ function menuBtn_init() {
     $(this).toggleClass("active");
 
     if (!$(".top-bar-menu-btn").hasClass("open")) {
-      $(".menu > li").removeClass("active"); // ← 서브메뉴 모두 닫기
+      $(".menu > li").removeClass("active"); // 서브메뉴 모두 닫기
     }
   });
 }
 menuBtn_init();
 
-// 서브메뉴
 function subMenu_init() {
   $(".menu > li").click(function () {
-    let $this = $(this);
-
-    const $menuBox = $this.closest(".menu");
-    const $subMenu = $menuBox.find(".sub-menu");
-
+    const $this = $(this);
     $this.siblings(".active").removeClass("active");
     $this.addClass("active");
   });
 }
 subMenu_init();
-/*솔루션 타이틀 스크롤 이벤트*/
-$(window).on("scroll", function () {
-  if ($(window).scrollTop() >= 400) {
-    $(".solution-title").addClass("active");
-  } else {
-    $(".solution-title").removeClass("active");
-  }
-});
-/* 솔루션 카드  애니메이션*/
-const cards = document.querySelectorAll(".card");
-document.addEventListener("scroll", function () {
-  const cards = document.querySelectorAll(".card");
-  cards.forEach((card) => {
-    const rect = card.getBoundingClientRect();
-    if (rect.top < window.innerHeight && rect.bottom > 0) {
-      card.classList.add("visible");
-    } else {
-      card.classList.remove("visible");
-    }
-  });
-});
 
-// 각 카드에 옵저버 적용
+// 스크롤 이벤트 최적화 - throttle 함수 정의
+function throttle(func, limit) {
+  let lastFunc;
+  let lastRan;
+  return function (...args) {
+    const context = this;
+    if (!lastRan) {
+      func.apply(context, args);
+      lastRan = Date.now();
+    } else {
+      clearTimeout(lastFunc);
+      lastFunc = setTimeout(function () {
+        if (Date.now() - lastRan >= limit) {
+          func.apply(context, args);
+          lastRan = Date.now();
+        }
+      }, limit - (Date.now() - lastRan));
+    }
+  };
+}
+
+// 공통 스크롤 핸들러 (throttle 적용)
+const onScroll = throttle(() => {
+  const scrollTop = window.scrollY || window.pageYOffset;
+
+  // solution-title 활성화
+  const solutionTitle = document.querySelector(".solution-title");
+  if (solutionTitle) {
+    if (scrollTop >= 400) solutionTitle.classList.add("active");
+    else solutionTitle.classList.remove("active");
+  }
+
+  // 솔루션 카드 .card-inner 활성화 (2번, 3번 카드)
+  const card2Inner = document.querySelector(".card:nth-child(2) > .card-inner");
+  if (card2Inner) {
+    if (scrollTop >= 1450) card2Inner.classList.add("active");
+    else card2Inner.classList.remove("active");
+  }
+
+  const card3Inner = document.querySelector(".card:nth-child(3) > .card-inner");
+  if (card3Inner) {
+    if (scrollTop >= 2100) card3Inner.classList.add("active");
+    else card3Inner.classList.remove("active");
+  }
+}, 100);
+
+window.addEventListener("scroll", onScroll, { passive: true });
+
+// 카드 애니메이션
+const cards = document.querySelectorAll(".card");
 const cardObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
@@ -66,37 +92,17 @@ const cardObserver = new IntersectionObserver(
       }
     });
   },
-  {
-    threshold: 0.2,
-  }
+  { threshold: 0.2 }
 );
-
 cards.forEach((card) => cardObserver.observe(card));
 
-/*솔루션 카드 스크롤 이벤트*/
-$(window).on("scroll", function () {
-  if ($(window).scrollTop() >= 1450) {
-    $(".card:nth-child(2)>.card-inner").addClass("active");
-  } else {
-    $(".card:nth-child(2)>.card-inner").removeClass("active");
-  }
-});
-$(window).on("scroll", function () {
-  if ($(window).scrollTop() >= 2100) {
-    $(".card:nth-child(3)>.card-inner").addClass("active");
-  } else {
-    $(".card:nth-child(3)>.card-inner").removeClass("active");
-  }
-});
-/*그래프 애니메이션 효과 */
+// impact-section 그래프 애니메이션
 document.addEventListener("DOMContentLoaded", () => {
   const section = document.querySelector(".impact-section");
-
   if (!section) {
     console.warn(".impact-section 요소를 찾을 수 없습니다.");
     return;
   }
-
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -107,84 +113,113 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     },
-    {
-      threshold: 0.5,
-    }
+    { threshold: 0.5 }
   );
-
   observer.observe(section);
 });
 
-//history 스와이퍼
+// Swiper 마우스 휠, 스크롤 이벤트 최적화
 window.addEventListener("DOMContentLoaded", () => {
   const swiper = new Swiper(".swiper", {
     direction: "horizontal",
     speed: 1500,
     spaceBetween: 0,
-    mousewheel: true, // swiper 내장 마우스휠 기능 끄기
+    mousewheel: false,
+    navigation: {
+      nextEl: ".next-arrow",
+      prevEl: ".prev-arrow",
+    },
   });
 
-  const swiperSection = document.querySelector(".swiper-wapper");
-
+  const swiperContainer = document.querySelector(".swiper");
+  let isMouseOverSwiper = false;
   let scrollTimeout;
+  let lastWheelEventTime = 0;
+
+  swiperContainer.addEventListener("mouseenter", () => {
+    isMouseOverSwiper = true;
+  });
+  swiperContainer.addEventListener("mouseleave", () => {
+    isMouseOverSwiper = false;
+  });
 
   window.addEventListener(
     "wheel",
     (e) => {
-      const rect = swiperSection.getBoundingClientRect();
-      const inSwiperSection =
-        rect.top <= window.innerHeight && rect.bottom >= 0;
+      if (!isMouseOverSwiper) return;
 
-      if (!inSwiperSection) {
-        // 가로 스크롤 구간 아니면 그냥 세로 스크롤
+      const WHEEL_SENSITIVITY = 40;
+      if (Math.abs(e.deltaY) < WHEEL_SENSITIVITY) return;
+
+      const now = Date.now();
+      if (now - lastWheelEventTime < 500) {
+        e.preventDefault();
         return;
       }
-
-      // 가로 스크롤 구간 내부
+      lastWheelEventTime = now;
 
       const isFirstSlide = swiper.isBeginning;
       const isLastSlide = swiper.isEnd;
-
-      // 휠 방향 판단
       const wheelDown = e.deltaY > 0;
       const wheelUp = e.deltaY < 0;
 
-      // 첫 슬라이드 + 위로 스크롤이면 세로 스크롤 허용 (휠 이벤트 막지 않음)
-      if (isFirstSlide && wheelUp) {
-        return; // 세로 스크롤 유지
-      }
+      if (isFirstSlide && wheelUp) return;
+      if (isLastSlide && wheelDown) return;
 
-      // 마지막 슬라이드 + 아래로 스크롤이면 세로 스크롤 허용
-      if (isLastSlide && wheelDown) {
-        return; // 세로 스크롤 유지
-      }
-
-      // 그 외 상황: 가로 슬라이드 전환 처리
       e.preventDefault();
 
       clearTimeout(scrollTimeout);
       scrollTimeout = setTimeout(() => {
-        if (wheelDown) {
-          swiper.slideNext();
-        } else if (wheelUp) {
-          swiper.slidePrev();
-        }
+        if (wheelDown) swiper.slideNext();
+        else if (wheelUp) swiper.slidePrev();
       }, 50);
     },
     { passive: false }
   );
+
+  // 스크롤 위치와 방향 체크
+  let hasScrolledToSwiper = false;
+  let lastScrollY = window.scrollY;
+
+  window.addEventListener(
+    "scroll",
+    throttle(() => {
+      const currentScrollY = window.scrollY;
+      const scrollingDown = currentScrollY > lastScrollY;
+      lastScrollY = currentScrollY;
+
+      const rect = swiperContainer.getBoundingClientRect();
+      const swiperTop = rect.top;
+
+      const swiperInView =
+        swiperTop < window.innerHeight * 0.6 &&
+        swiperTop > window.innerHeight * 0.1;
+
+      if (!hasScrolledToSwiper && swiperInView && scrollingDown) {
+        hasScrolledToSwiper = true;
+
+        swiperContainer.scrollIntoView({ behavior: "smooth", block: "start" });
+
+        setTimeout(() => {
+          hasScrolledToSwiper = false;
+        }, 1000);
+      }
+    }, 200),
+    { passive: true }
+  );
 });
-//history 슬라이드 4 효과
+
+// slide-4 애니메이션
 const target = document.querySelector(".swiper-slide-4");
-
-const slide4 = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("active");
-    } else {
-      entry.target.classList.remove("active");
-    }
+if (target) {
+  const slide4 = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("active");
+      } else {
+        entry.target.classList.remove("active");
+      }
+    });
   });
-});
-
-slide4.observe(target);
+  slide4.observe(target);
+}
