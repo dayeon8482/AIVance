@@ -810,12 +810,14 @@ position: relative;
   width:100%;
   height: 100%;
 }
-.history-background>img{
+.history-background>p{
   position: absolute;
   z-index: -1;
-  width:100%;
-  height: 100%;
-  object-fit: contain;
+  font-size: 6rem;
+  color:#212121;
+  top:25%;
+  left:50%;
+  transform: translateX(-50%);
 }
 .swiper {
 width: 100%;
@@ -925,10 +927,12 @@ z-index: 20;
   transform: rotate(45deg);
   right:3%;
 }
- @media (1200px > width > 767px) {
+@media (width > 480px) {
   .mobile-history{
-    display: none;
-  }
+  display: none;
+}
+}
+ @media (1200px > width > 767px) {
   .section-3{
     height: 100vh;
   }
@@ -962,9 +966,6 @@ margin-left: -250px;
 }
  }
  @media (768px > width > 480px) {
-  .mobile-history{
-    display: none;
-  }
   .section-3{
     height: 100vh;
   }
