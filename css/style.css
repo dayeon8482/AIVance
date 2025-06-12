@@ -20,13 +20,14 @@ body {
 font-family: 'Pretendard', sans-serif;
 font-weight: 700;
 background-color: #000;
- /* -ms-overflow-style: none; */
+min-height:100%;
  margin: 0 auto;
- }
- 
-/* ::-webkit-scrollbar {
+ -ms-overflow-style: none;
+}
+::-webkit-scrollbar {
   display: none;
-} */
+}
+ 
 * {
 padding: 0;
 margin: 0;
@@ -59,11 +60,7 @@ transform: translate(-50%, -50%);
 transition: transform 0.1s ease;
 z-index: 9999;
 }
-@media (768px > width){
-  .custom-cursor{
-    display: none;
-  }
-}
+
 .section{
 width:100%;
 margin: 0 auto;
@@ -88,6 +85,15 @@ animation: spin 10s linear infinite;
 0%   { transform: rotate(0deg); }
 100% { transform: rotate(360deg); }
 }
+
+@media (1025px > width){
+  .custom-cursor{
+    display: none;
+  }
+  .loader{
+    display: none;
+  }
+}
 /*구현 시작*/
 /*메뉴 구현*/
 .menu-wrap{
@@ -103,6 +109,11 @@ transition: all .5s;
 }
 .menu-wrap.active{
  width:300px;
+}
+@media (481px> width){
+  .menu-wrap.active{
+ width:100%;
+}
 }
 .menu-box{
 width:100%;
@@ -136,7 +147,6 @@ height:81px;
 .menu > li:nth-child(5).active> .sub-menu, .menu > li:nth-child(6).active> .sub-menu{
 height:122px;
 }
-
 .sub-menu {
 height: 0;
 width:100%;
@@ -157,7 +167,6 @@ padding:10px 10px;
 .sub-menu > li:hover{
 color:#6479f6;
 }
-
 
 /*탑바*/
 .top-bar{
@@ -331,6 +340,15 @@ border-color: #fff;
 }
 .section-1 > .video-sub-title{
   font-size: 1.2rem;
+  margin-top: -30px;
+}
+}
+@media (481px > width) {
+  .section-1 > .video-title{
+  font-size: 1.5rem;
+}
+.section-1 > .video-sub-title{
+  font-size: 1rem;
   margin-top: -30px;
 }
 }
@@ -545,6 +563,72 @@ font-size: 1.3rem;
 font-size: 0.6rem;
 }
 }
+@media (481px > width){
+  .solution-title {
+    flex-direction: column;
+  }
+  .solution-title > p{
+  font-size: 1.4rem;
+}
+.solution-title > img{
+  width:150px;
+  height: 50px;
+  object-fit: contain;
+}
+.card-inner{
+  width:350px;
+}
+.card:nth-child(1)>.card-inner::before{
+  content:"An hour’s work, \A done in just 3 minutes.";
+  white-space:pre;
+  font-size: 1.7rem;
+  text-align: center;
+  width:350px;
+  text-shadow: 3px 3px 3px rgba(0,0,0,0.7);
+}
+    .card:nth-child(1)>.card-inner::after{
+  content:"반복적인 문서 작업을 AI가 대신합니다. \A PDF에서 필요한 정보를 추출하고, 엑셀로 자동 정리해주며, \A 리포트는 미리 설정된 템플릿에 맞춰 완성됩니다.";
+  white-space:pre;
+  font-size: 0.8rem;
+  text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4);
+  font-weight: 100;
+   width:350px;
+  top:65%;
+}
+.card:nth-child(2)>.card-inner::before{
+  content:"Delight customers.\A Empower teams.";
+   white-space:pre;
+  font-size: 1.7rem;
+  text-align: center;
+   width:350px;
+}
+    .card:nth-child(2)>.card-inner::after{
+  content:"고객 요청, 이메일, 채팅 데이터를 실시간으로 분류하고\A 우선순위를 자동 지정합니다. \A 단순 반복 응답은 챗봇과 연동되고,\A 담당자에게 필요한 건 자동으로 할당됩니다.";
+  font-size: 0.8rem;
+  text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4);
+   width:350px;
+  font-weight: 100;
+  top:65%;
+}
+
+.card:nth-child(3)>.card-inner::before{
+  content:"Save time.\A Report accurately.";
+  text-align: center;
+  white-space:pre;
+  font-size: 1.7rem;
+   width:350px;
+  color:#fff;
+  text-shadow: 3px 3px 3px rgba(0,0,0,0.7);
+}
+    .card:nth-child(3)>.card-inner::after{
+  content:"다양한 사내 시스템과 연동되어 데이터를 \A 자동 수집하고,시각화된 리포트를 생성합니다. \A매일 아침 대시보드에 자동으로 최신 데이터가 반영됩니다.";
+  font-size: 0.8rem;
+  text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4);
+  font-weight: 100;
+   width:350px;
+  top:65%;
+}
+}
 
 /*메인페이지 3*/
 .section-3{
@@ -683,23 +767,63 @@ font-size: 0.6rem;
   color: #dddddd;
 }
   }
+  
+   @media (481px > width) {
+    .section-3{
+    }
+    .section-title{
+      font-size: 1.4rem;
+    }
+    .section-subtitle{
+      display: none;
+    }
+    .impact-grid {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+.compare{
+  display: flex;
+  justify-content: space-around;
+}
+.impact-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  color: #88aaff;
+}
+
+.impact-card p {
+  font-size: 0.7rem;
+  color: #dddddd;
+}
+  }
   /*섹션 4 history*/
   .section-4{
-    height: 100vh;
+    min-height: 100vh;
   }
   .timeline-section {
-height: 100vh;
+min-height: 100vh;
 color: white;
 position: relative;
 }
-
+.history-background{
+  position: absolute;
+  z-index: -1;
+  width:100%;
+  height: 100%;
+}
+.history-background>img{
+  position: absolute;
+  z-index: -1;
+  width:100%;
+  height: 100%;
+  object-fit: contain;
+}
 .swiper {
 width: 100%;
-height: 100%;
+height: auto;
 position: relative;
 }
-
 .swiper-slide {
+  height: auto;
 display: flex;
 justify-content: center;
 align-items: center;
@@ -722,7 +846,7 @@ display: flex;
 height: 80px;
 justify-content: space-around;
 align-items: center;
-margin: 70px 0 50px 0;
+margin: 80px 0 50px 0;
 }
 
 .year > span {
@@ -740,13 +864,16 @@ align-items: center;
 justify-content: space-around;
 }
 .history {
-padding-top: 70px;
+padding-top: 30px;
 width: 550px;
 height: 250px;
 position: relative;
 display: flex;
 flex-direction: column;
 align-items: center;
+list-style: inside;
+list-style-type: square;
+text-align: center;
 }
 
 .history > li {
@@ -799,8 +926,11 @@ z-index: 20;
   right:3%;
 }
  @media (1200px > width > 767px) {
+  .mobile-history{
+    display: none;
+  }
   .section-3{
-    height: 110vh;
+    height: 100vh;
   }
   .swiper-slide::before {
 top: 43%;
@@ -832,6 +962,9 @@ margin-left: -250px;
 }
  }
  @media (768px > width > 480px) {
+  .mobile-history{
+    display: none;
+  }
   .section-3{
     height: 100vh;
   }
@@ -864,6 +997,73 @@ font-size: 0.65rem;
 margin-left: -150px;
 }
  }
+  @media (481px > width){
+    .swiper{
+      display: none;
+    }
+    .arrow-group{
+      display: none;
+    }
+    .section-3{
+    height: 100vh;
+  }
+    .section-4{
+    min-height: 100vh;
+  }
+  .history-background{
+    display: none;
+  }
+  .mobile-history-wrap{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+   .mobile-history-wrap::after{
+    content:"";
+    position: absolute;
+    top:140px;
+    left:20px;
+    width:1px;
+    height: calc(100% - 130px);
+    background-color: #999;
+
+   }
+  .mobile-history-wrap >.title{
+    text-align: center;
+    font-size: 2.7rem;
+    margin: 40px 0;
+  }
+  .history-box{
+    width:310px;
+    margin:20px 30px;
+    padding:5px;
+  }
+  .mb-year>span{
+    font-size: 1.5rem;
+    color:#dddddd;
+    position: relative;
+   }
+   .mb-year>span::after{
+    content:"";
+    height: 1px;
+    width:85px;
+    background-color:#999;
+    position: absolute;
+    bottom:-15%;
+    left:-15px;
+   }
+   .mb-history{
+    margin-top: 10px;
+   }
+   .mb-history>li{
+    font-size: 0.9rem;
+    color:#dddddd;
+    font-weight: 100;
+   }
+   .RPA{
+    font-size: 0.8rem;
+   }
+  }
 /*푸터*/
  .footer {
   width: 100%;
@@ -923,3 +1123,36 @@ margin-left: -150px;
     overflow: hidden;
   }
   }
+   @media (481px > width) {
+      .footer-container {
+    min-width: 350px;
+  }
+  .footer-info {
+    font-size: 0.5rem;
+    flex-direction: column;
+    padding:0px;
+  }
+   .footer-logo {
+    height: 60px;
+    width:130px;
+    overflow: hidden;
+  }
+
+   }
+  /*모바일 반응형*/
+   /* @media (481px > width) {
+      .main-wrap {
+              height: 100vh;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+      }
+
+      .section-1, .section-3, .sectoin-4 {
+       height: 100vh;
+      }
+      
+      .section{
+           scroll-snap-align: start;
+      }
+    } */

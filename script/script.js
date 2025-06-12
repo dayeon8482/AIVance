@@ -57,10 +57,11 @@ function throttle(func, limit) {
 const onScroll = throttle(() => {
   const scrollTop = window.scrollY || window.pageYOffset;
   const isMobile = window.innerWidth <= 768;
+  const isSmallMobile = window.innerWidth <= 480;
   // solution-title 활성화
   const solutionTitle = document.querySelector(".solution-title");
   if (solutionTitle) {
-    const titleTrigger = isMobile ? 450 : 400;
+    const titleTrigger = isSmallMobile ? 280 : isMobile ? 450 : 400;
     if (scrollTop >= titleTrigger) solutionTitle.classList.add("active");
     else solutionTitle.classList.remove("active");
   }
@@ -68,14 +69,14 @@ const onScroll = throttle(() => {
   // 솔루션 카드 .card-inner 활성화 (2번, 3번 카드)
   const card2Inner = document.querySelector(".card:nth-child(2) > .card-inner");
   if (card2Inner) {
-    const card2Trigger = isMobile ? 1700 : 1350;
+    const card2Trigger = isSmallMobile ? 1400 : isMobile ? 1700 : 1350;
     if (scrollTop >= card2Trigger) card2Inner.classList.add("active");
     else card2Inner.classList.remove("active");
   }
 
   const card3Inner = document.querySelector(".card:nth-child(3) > .card-inner");
   if (card3Inner) {
-    const card3Trigger = isMobile ? 2500 : 2000;
+    const card3Trigger = isSmallMobile ? 2000 : isMobile ? 2500 : 2000;
     if (scrollTop >= card3Trigger) card3Inner.classList.add("active");
     else card3Inner.classList.remove("active");
   }
@@ -123,18 +124,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Swiper 마우스 휠, 스크롤 이벤트 최적화
 window.addEventListener("DOMContentLoaded", () => {
-  const swiper = new Swiper(".swiper", {
-    direction: "horizontal",
-    speed: 1500,
-    spaceBetween: 0,
-    mousewheel: false,
-    navigation: {
-      nextEl: ".next-arrow",
-      prevEl: ".prev-arrow",
-    },
+  const swiperContainer = document.querySelector(".swiper");
+  let swiper;
+
+  // Swiper 초기화 함수
+  const initSwiper = () => {
+    const isSmallMobile = window.innerWidth <= 480;
+    const direction = isSmallMobile ? "vertical" : "horizontal";
+
+    // 이미 초기화된 swiper가 있다면 제거
+    if (swiper) swiper.destroy(true, true);
+
+    swiper = new Swiper(".swiper", {
+      direction: direction,
+      speed: 1500,
+      spaceBetween: 0,
+      mousewheel: false,
+      navigation: {
+        nextEl: ".next-arrow",
+        prevEl: ".prev-arrow",
+      },
+    });
+  };
+
+  initSwiper(); // 처음 한 번 실행
+
+  // 브라우저 리사이즈 시 swiper 재초기화
+  window.addEventListener("resize", () => {
+    initSwiper();
   });
 
-  const swiperContainer = document.querySelector(".swiper");
+  // 마우스 휠 스크롤 제어 (가로일 때만 적용)
   let isMouseOverSwiper = false;
   let scrollTimeout;
   let lastWheelEventTime = 0;
@@ -150,6 +170,7 @@ window.addEventListener("DOMContentLoaded", () => {
     "wheel",
     (e) => {
       if (!isMouseOverSwiper) return;
+      if (!swiper || swiper.params.direction !== "horizontal") return; // 가로에서만 적용
 
       const WHEEL_SENSITIVITY = 40;
       if (Math.abs(e.deltaY) < WHEEL_SENSITIVITY) return;
@@ -180,7 +201,7 @@ window.addEventListener("DOMContentLoaded", () => {
     { passive: false }
   );
 
-  // 스크롤 위치와 방향 체크
+  // 스크롤 방향 감지 후 swiper로 스크롤 이동
   let hasScrolledToSwiper = false;
   let lastScrollY = window.scrollY;
 
@@ -226,3 +247,4 @@ if (target) {
   });
   slide4.observe(target);
 }
+//푸터 활성화
