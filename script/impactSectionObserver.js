@@ -1,8 +1,8 @@
 export function initImpactSectionObserver() {
-  document.addEventListener("DOMContentLoaded", () => {
-    const section = document.querySelector(".impact-section");
-    if (!section) return;
+  const section = document.querySelector(".impact-section");
+  if (!section) return;
 
+  requestAnimationFrame(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -11,7 +11,6 @@ export function initImpactSectionObserver() {
       },
       { threshold: 0.5 }
     );
-
     observer.observe(section);
   });
 }

@@ -27,6 +27,12 @@ export function initScrollHandler() {
       const trigger = isSmallMobile ? 2000 : isMobile ? 2500 : 2000;
       card3.classList.toggle("active", scrollTop >= trigger);
     }
+
+    const experienceTitle = document.querySelector(".experience-text-box");
+    if (experienceTitle) {
+      const trigger = isSmallMobile ? 3000 : isMobile ? 4000 : 5400;
+      experienceTitle.classList.toggle("active", scrollTop >= trigger);
+    }
   }, 100);
 
   window.addEventListener("scroll", onScroll, { passive: true });

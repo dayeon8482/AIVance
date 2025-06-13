@@ -37,18 +37,6 @@ list-style: none;
 color: inherit;
 }
 /*라이브러리*/
-.bg-red{
-background-color: red;
-}
-.bg-blue{
-background-color: blue;
-}
-.bg-green{
-background-color: green;
-}
-.bg-gold{
-background-color: gold;
-}
 .custom-cursor {
 width: 20px;
 height: 20px;
@@ -325,7 +313,7 @@ border-color: #fff;
 }
 }
 
-@media (1200px > width > 767px) {
+@media (1200px > width > 768px) {
 .section-1 > .video-title{
   font-size: 2.2rem;
 }
@@ -334,7 +322,7 @@ border-color: #fff;
   margin-top: -10px;
 }
 }
-@media (768px > width > 480px) {
+@media (769px > width > 480px) {
 .section-1 > .video-title{
   font-size: 2rem;
 }
@@ -525,7 +513,7 @@ transform: scale(1);
     opacity: 1;
 }
 
-@media (1200px > width > 767px) {
+@media (1200px > width > 768px) {
 .solution-title > p{
   font-size: 1.8rem;
 }
@@ -544,7 +532,7 @@ font-size: 2.2rem;
 font-size: 1rem;
 }
 }
-@media (768px > width > 480px) {
+@media (769px > width > 480px) {
 .solution-title > p{
   font-size: 1.3rem;
 }
@@ -632,26 +620,32 @@ font-size: 0.6rem;
 
 /*메인페이지 3*/
 .section-3{
-  height: 120vh;
+ min-height: 100vh;
+ width:100%;
 }
 
 .impact-section {
+  height: 100vh;
   position: relative;
   overflow: hidden;
   padding: 100px 20px;
   text-align: center;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+ align-items: center;
+ justify-content: center;
 }
 
 .section-title {
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: 700;
   margin-bottom: 20px;
   color:#fff;
 }
 
 .section-subtitle {
-  font-size: 1.3rem;
+  font-size: 1.8rem;
   color: #fff;
   margin-bottom: 60px;
   font-weight: 300;
@@ -733,21 +727,21 @@ font-size: 0.6rem;
   .graph-animate .graph-svg-bg polyline {
     stroke-dashoffset: 0;
   }
-  @media (1200px > width > 767px) {
+  @media (1200px > width > 768px) {
     .section-title{
-      font-size: 2rem;
+      font-size: 2.3rem;
     }
     .section-subtitle{
-      font-size: 1.2rem;
+      font-size: 1.5rem;
     }
     .impact-grid {
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 20px;
 }
   }
-    @media (768px > width > 480px) {
+    @media (769px > width > 480px) {
     .section-title{
-      font-size: 1.5rem;
+      font-size: 1.8rem;
     }
     .section-subtitle{
       font-size: 1.1rem;
@@ -769,19 +763,19 @@ font-size: 0.6rem;
   }
   
    @media (481px > width) {
-    .section-3{
-    }
     .section-title{
-      font-size: 1.4rem;
+      font-size: 1.3rem;
     }
     .section-subtitle{
       display: none;
     }
     .impact-grid {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+   max-width: 300px;
 }
 .compare{
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
 }
 .impact-card h3 {
@@ -795,14 +789,15 @@ font-size: 0.6rem;
   color: #dddddd;
 }
   }
-  /*섹션 4 history*/
-  .section-4{
+  /*섹션 5 history*/
+  .section-5{
     min-height: 100vh;
   }
   .timeline-section {
 min-height: 100vh;
 color: white;
 position: relative;
+display: flex;
 }
 .history-background{
   position: absolute;
@@ -815,7 +810,7 @@ position: relative;
   z-index: -1;
   font-size: 6rem;
   color:#212121;
-  top:25%;
+  top:20%;
   left:50%;
   transform: translateX(-50%);
 }
@@ -839,7 +834,7 @@ width: 100%;
 height: 1px;
 background-color: #999;
 position: absolute;
-top: 40%;
+top: 43%;
 }
 
 .year {
@@ -866,7 +861,6 @@ align-items: center;
 justify-content: space-around;
 }
 .history {
-padding-top: 30px;
 width: 550px;
 height: 250px;
 position: relative;
@@ -932,7 +926,7 @@ z-index: 20;
   display: none;
 }
 }
- @media (1200px > width > 767px) {
+ @media (1200px > width > 768px) {
   .section-3{
     height: 100vh;
   }
@@ -965,7 +959,7 @@ font-size: 1rem;
 margin-left: -250px;
 }
  }
- @media (768px > width > 480px) {
+ @media (769px > width > 480px) {
   .section-3{
     height: 100vh;
   }
@@ -1008,7 +1002,7 @@ margin-left: -150px;
     .section-3{
     height: 100vh;
   }
-    .section-4{
+    .section-5{
     min-height: 100vh;
   }
   .history-background{
@@ -1065,6 +1059,103 @@ margin-left: -150px;
     font-size: 0.8rem;
    }
   }
+  /*섹션 4*/
+  .section-4{
+    height: 120vh;
+    min-height: 100vh;
+  }
+  .experience-wrap{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .experience-title{
+    color:#fff;
+    font-size: 3.5rem;
+    margin: 10px 0 20px 0;
+  }
+  .experience-sub-title{
+    font-size: 1.5rem;
+    color:#666;
+    font-weight: 100;
+    text-align: center;
+    cursor: default;
+  }
+   .experience-text-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    transition: opacity .5s;
+   }
+    .experience-text-box.active{
+    opacity: 1;
+   }
+  .chat-box{
+    width:800px;
+    margin:50px 0 70px 0;
+    cursor: default;
+  }
+  .chat-box>img{
+    width: 100%;
+    object-fit: contain;
+  }
+  .experience-btn{
+    border-radius: 20px;
+    background-color: #6479f6;
+    color:#fff;
+    font-weight: 100;
+    font-size: 2rem;
+    padding:15px 30px;
+    transition: background-color .3s;
+  }
+    .experience-btn:hover{
+    background-color: #3954f3;
+  }
+  @media (1200px > width > 768px) {
+    .section-4{
+    height: 100vh;
+  }
+  .experience-title{
+    font-size: 2.5rem;
+  }
+  .experience-sub-title{
+    font-size: 1.5rem;
+  }
+  .chat-box{
+    width: 700px;
+  }
+  }
+    @media (769px > width > 480px) {
+    .section-4{
+    height: 100vh;
+  }
+  .experience-title{
+    font-size: 2.3rem;
+  }
+  .experience-sub-title{
+    font-size: 1.2rem;
+  }
+  .chat-box{
+    width: 450px;
+  }
+  }
+      @media (481px> width) {
+    .section-4{
+    height: 100vh;
+  }
+  .experience-title{
+    font-size: 2rem;
+  }
+  .experience-sub-title{
+    font-size: 0.9rem;
+  }
+  .chat-box{
+    width: 340px;
+  }
+  }
 /*푸터*/
  .footer {
   width: 100%;
@@ -1100,7 +1191,7 @@ margin-left: -150px;
     .footer-info>p{
       padding: 0 15px;
     }
- @media (1200px > width > 767px) {
+ @media (1200px > width > 768px) {
   .footer-container {
     min-width: 700px;
   }
@@ -1109,7 +1200,7 @@ margin-left: -150px;
     flex-direction: column;
   }
   }
-   @media (768px > width > 480px) {
+   @media (769px > width > 480px) {
   .footer-container {
     min-width: 450px;
   }
@@ -1140,20 +1231,3 @@ margin-left: -150px;
   }
 
    }
-  /*모바일 반응형*/
-   /* @media (481px > width) {
-      .main-wrap {
-              height: 100vh;
-      overflow-y: scroll;
-      scroll-snap-type: y mandatory;
-      scroll-behavior: smooth;
-      }
-
-      .section-1, .section-3, .sectoin-4 {
-       height: 100vh;
-      }
-      
-      .section{
-           scroll-snap-align: start;
-      }
-    } */
