@@ -30,8 +30,14 @@ export function initScrollHandler() {
 
     const experienceTitle = document.querySelector(".experience-text-box");
     if (experienceTitle) {
-      const trigger = isSmallMobile ? 3000 : isMobile ? 4000 : 5400;
-      experienceTitle.classList.toggle("active", scrollTop >= trigger);
+      const rect = experienceTitle.getBoundingClientRect();
+      const trigger = window.innerHeight * 0.8;
+
+      if (rect.top < trigger) {
+        experienceTitle.classList.add("active");
+      } else {
+        experienceTitle.classList.remove("active");
+      }
     }
   }, 100);
 

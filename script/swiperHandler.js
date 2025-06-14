@@ -91,9 +91,9 @@ export function initSwiperHandler() {
 
           setTimeout(() => {
             hasScrolledToSwiper = false;
-          }, 1000);
+          }, 3000);
         }
-      }, 200),
+      }, 1000),
       { passive: true }
     );
   });
